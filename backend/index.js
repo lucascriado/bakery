@@ -1,9 +1,14 @@
 const express = require('express');
 const sequelize = require('./config/database_config');
+const cors = require('cors');
 require('dotenv').config();
 
 const app = express();
 app.use(express.json());
+
+app.use(cors({
+  origin: 'http://localhost:5173' // Ou use '*' para permitir todas as origens
+}));
 
 const authRoutes = require('./routes/auth');
 app.use('/', authRoutes);
